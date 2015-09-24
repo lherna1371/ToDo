@@ -1,0 +1,5 @@
+<% if (!session[:passid].blank?) || (!session[:passtoken].blank?) %>
+  <li><%= link_to "Logout", logout_path, :method=>'delete', :style => 'color: white'  %></li> 
+<% else %>
+  <li><%= link_to "Login", login_path, :style => 'color: white'  %></li>
+<% end %>

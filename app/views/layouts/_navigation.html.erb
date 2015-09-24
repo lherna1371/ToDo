@@ -1,0 +1,43 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="background-color: black">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">ToDo</a>
+      <div></div>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav pull-right">
+        <li><a href="/" style="color:white">Home</a></li>
+        <% if (!session[:passid].blank?) || (!session[:passtoken].blank?) %>
+        <li><a href="/user/dashboard" style="color:white">Dashboard</a></li>
+        <% end %>
+        <%= render 'layouts/navigation_links' %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<style>
+
+
+@media (max-width: 1000px) {
+    .pull-right {
+        float: none !important;
+    }
+}
+
+
+.logoimg {
+margin: 0 auto;
+height: 3.3em;
+padding-top: 1em;
+padding-right: 1em;
+}
+
+</style>

@@ -1,0 +1,228 @@
+<%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js", "rails.js" %>
+
+<div class="container">
+    <div class="reg-block">
+	<div class="row">
+		<div class="col-xs-12 col-md-6">
+				<div class="panel panel-default">
+				    <div class="panel-heading"><h3 style="color:white">ToDo List</h3></div>
+				    <div class="panel-body">
+							<ul class="list-group todolist" id="listitems">
+							</ul>
+					</div>
+				</div>
+		</div>
+
+
+		<div class="col-xs-12 col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading"><h3 style="color:white">New ToDo Item</h3></div>
+
+				<div class="panel-body">
+
+				<br>
+
+					<button class='btn btn-primary edit-button' data-toggle="modal" href="#new_todo_modal" style="none">Create New ToDo</button>
+
+
+
+					<div class="modal fade modalform" id="new_todo_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					        <h4 class="modal-title" id="myModalLabel">Create new ToDo</h4>
+					      </div>
+					      <div class="modal-body">
+					        <%= render 'form', modal: true %>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12 col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading"><h3 style="color:white">Notifications</h3></div>
+				<table class="table">
+		        <thead>
+		          <tr>
+		            <th>#</th>
+		            <th>Title</th>
+		            <th>Message</th>
+		            <th>Link</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <tr>
+		            <td>1</td>
+		            <td>St. Vincent DePaul</td>
+		            <td>Dealine to apply for DePaul University scholarship is 01/13/2015.</td>
+		            <td><button type="button" class="btn btn-danger">More Info</button></td>
+		          </tr>
+		          <tr>
+		            <td>2</td>
+		            <td>ACT/SAT Test</td>
+		            <td>Test prep courses will be held at Loyola University on 12/12/2014</td>
+		            <td><button type="button" class="btn btn-danger">More Info</button></td>
+		          </tr>
+		          <tr>
+		            <td>3</td>
+		            <td>Math and Science Award</td>
+		            <td>University of Illinois in Chicago</td>
+		            <td><button type="button" class="btn btn-danger">More Info</button></td>
+		          </tr>
+		        </tbody>
+		      	</table>
+			</div>
+		</div>
+
+		
+		<div class="col-xs-12 col-md-12">
+			<div class="panel panel-default">
+					  <!-- Default panel contents -->
+				<div class="panel-heading"><h3 style="color:white">My Education Contacts</h3></div>
+				<div class="panel-body">
+				  <div class="col-xs-12 col-md-4">
+				    <div class="thumbnail">
+				      <img src="http://www.oru.edu/images/admissions_recruiters/Sierra%20Forest%20007.jpg" alt="http://m.c.lnkd.licdn.com/media/p/1/000/2ac/3ea/0131ce5.jpg">
+				      <div class="caption">
+				        <h3>Sierra Forest</h3>
+				        <p>Title, High School Name</p>
+				        <p><a href="#" class="btn btn-primary" role="button">Call</a> <a href="#" class="btn btn-success" role="button">Email</a> <a href="#" class="btn btn-default" role="button">Notes</a></p>
+				      </div>
+				    </div>
+				  </div>
+				  <div class="col-xs-12 col-md-4">
+				    <div class="thumbnail">
+				      <img src="http://www.oru.edu/images/admissions_recruiters/Nathan1.jpg">
+				      <div class="caption">
+				        <h3>Nathan D Ford</h3>
+				        <p>Title, High School Name</p>
+				        <p><a href="#" class="btn btn-primary" role="button">Call</a> <a href="#" class="btn btn-success" role="button">Email</a> <a href="#" class="btn btn-default" role="button">Notes</a></p>
+				      </div>
+				    </div>
+				  </div>
+				  <div class="col-xs-12 col-md-4">
+				    <div class="thumbnail">
+				      <img src="http://www.oru.edu/images/admissions_recruiters/Marina%20Garbuz%200005.jpg">
+				      <div class="caption">
+				        <h3>Garbina Garbuz</h3>
+				        <p>Title, High School Name</p>
+				        <p><a href="#" class="btn btn-primary" role="button">Call</a> <a href="#" class="btn btn-success" role="button">Email</a> <a href="#" class="btn btn-default" role="button">Notes</a></p>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+</div>
+
+
+<script>
+$(document).ready(function(){
+
+// new todo item
+	dataone = '<%= @result.html_safe %>'
+	var newa = JSON.parse(dataone)
+   $.each(newa, function(idx, obj) {
+		var description = obj.description;
+		var id = obj.id
+		var status = obj.is_complete
+		console.log(description)
+		if(status == false) {
+			$("<li class='list-group-item' id='book_1' data-id='"+ id +"'><span class='handle fa fa-hand-rock-o'></span><p>" + description +"</p><button type='button' class='btn btn-danger complete-button'>Complete</button><a href='/todo/edit/"+ id +"'class='btn btn-info'>Edit</a></li>").prependTo( ".todolist");
+		} 
+		else {
+			$("<li class='list-group-item' id='book_1' data-id='"+ id +"'><span class='handle fa fa-hand-rock-o'></span><p>" + description +"</p> <p style='color:green'>You have completed this ToDo item!</p><a href='/todo/edit/"+ id +"' class='btn btn-info'>Edit</a></li>").prependTo( ".todolist");
+		}
+
+	});
+
+// complete button
+	$('.complete-button').click(function(){
+	    var todo_id = $(this).parent().data('id');
+	    // should not hide/remove here, should be after event has succeeds 
+	    $(this).hide();
+	    console.log(todo_id);
+	    $.ajax({ 
+	    	type: 'POST',
+	        url: '/todo/edit',
+	        data: {"todoID": todo_id},
+	        dataType: "JSON",
+	        success: function(result){
+	        	console.log("success")
+	        	// $(this).hide();
+	        }
+	    });
+	    return false; 
+	});
+
+// edit button
+	// $('.edit-button').click(function(){
+	//     var edit_id = $(this).parent().data('id');
+	//     console.log(edit_id)
+	//     $.ajax({ 
+	//     	type: 'GET',
+	//         url: '/todo/index',
+	//         data: {"editID": edit_id},
+	//         dataType: "JSON",
+	//         success: function(result){
+	//         	console.log(result),
+	//         	$('#edititem').val(result.description)
+	//         }
+	//     });
+	//     return true; 
+	// });
+
+
+// sort list 
+  $('#listitems').sortable({
+    axis: 'y',
+    dropOnEmpty: false,
+    handle: '.handle',
+    cursor: 'crosshair',
+    items: 'li',
+    opacity: 0.4,
+    scroll: true,
+    // update: function(){
+    //   $.ajax({
+    //     url: '/todo/order',
+    //     type: 'post',
+    //     data: $('').sortable('serialize'),
+    //     dataType: 'script',
+    //     complete: function(request){
+    //       $('').effect('highlight');
+    //     }
+    //   });
+    // }
+  });
+});
+</script>
+
+
+
+
+<style>
+#the-basics .tt-dropdown-menu {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+span.tt-dropdown-menu {
+	width: 100%;
+	background: white;
+}
+
+</style>

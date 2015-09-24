@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<%= favicon_link_tag '/todo.ico' %>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title><%= content_for?(:title) ? yield(:title) : "ToDo" %></title>
+	<meta name="description" content="<%= content_for?(:description) ? yield(:description) : "ToDo" %>">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+	</head>
+  	<body>
+	    <header>
+	      <%= render 'layouts/navigation' %>
+	    </header>
+	    <main role="main">
+	    <br>
+	       <%= render 'layouts/messages' %>
+	       <%= yield %>
+	    <br>
+	    </main>
+		<div class="footer">
+	  		<div class="col-xs-12 col-md-12">
+	  			<p> Copyright © ToDo 2015  </p>
+	  		</div>
+		</div>
+
+	</body>
+</html>
+
+
+
+<style>
+
+main {
+background-color: #e9eaed;
+padding-bottom: 2px;
+width: 100%;
+margin-top: 51px;
+}
+
+.panel-heading {
+  border-top-right-radius: 0px;
+  border-top-left-radius:  0px;
+}
+
+.panel {
+  border-radius: 0px;
+}
+
+.panel-default {
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+}
+
+.panel-default > .panel-heading {
+  color: #333333;
+  background-color: #428bca;
+  border-color: #428bca;
+}
+
+.header_course {
+  color: white;
+}
+
+.btn, .submit, .authform .button, .button-xs {
+  border-radius: 0px;
+}
+
+.form-control {
+  border-radius: 0px;
+}
+
+
+.form-inline .form-control, .navbar-form .form-control {
+  display: block;
+}
+
+.panel-title > a {
+  color: white;
+}
+
+.panel-group .panel {
+  border-radius: 0px;
+}
+
+.progress-bar {
+  background-color: red;
+}
+
+.progress {
+  border-radius: 0px;
+}
+
+.language_link a {
+  color: #5cb85c;
+}
+
+h4.list-group-item-heading {
+  color: #428bca;
+}
+
+h5.qheader {
+  color: rgb(234, 0, 0);
+}
+
+.navbar-toggle {
+  padding: 9px 10px;
+  margin-top: 8px;
+  margin-right: 15px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.navbar-inverse {
+  background-color: #101010;
+}
+
+.footer {
+  background-color: #222222;
+}
+nav.share {display:inline-block;} /* shareable's nav tag */
+nav.share div {float:left;}
+nav.share iframe {border:0; margin-top:0; padding-top:0;} /* if using medium sized buttons */
+#___plusone_0 {font-size: default !important;}
+.fb_iframe_widget span { vertical-align: top; }
+.fb_edge_widget_with_comment { vertical-align: top;}
+.fb-like{display:inline-block}
+* html .fb-like{display:inline}/* ie6 inline block fix*/
+*+html .fb-like{display:inline}/* ie7 inline block fix*/
+</style>

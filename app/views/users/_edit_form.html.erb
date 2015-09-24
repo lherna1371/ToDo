@@ -1,0 +1,43 @@
+<!-- <div class="container">
+    <div class="reg-block">
+        <div class="reg-block-header modalheader">
+        </div>
+        <%= form_tag('/todo/edit') do %>
+        <div>
+            <%= text_area_tag :edititem, params[:item], :placeholder => 'ToDo description', rows: 10, cols: 40 %> 
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-0">
+                <%= submit_tag "Submit", :class => "button"%>
+            </div>
+        </div>
+
+        <% end %>
+    </div>
+</div>
+
+
+
+<script>
+
+$('.editform').submit(function() {  
+    $('#edititem').val(result.description)
+    $.ajax({
+        type: "POST",
+        url: $(this).attr('action'),
+        data: 'sample',
+        dataType: "JSON",
+        success: function (data){
+          console.log("Success, the following ToDo item has been saved:", data);
+          $("<p>Success, your ToDo item has been saved.</p>").appendTo( ".modalheader");
+
+          $("<li class='list-group-item' id='book_1'><span class='handle fa fa-hand-rock-o'></span><p>" + data.description +"</p><button type='button' class='btn btn-danger'>Complete</button><button type='button' class='btn btn-info edit-button'>Edit</button></li>").prependTo( ".todolist");
+
+        },
+    });
+    return false; 
+});
+
+
+</script> -->

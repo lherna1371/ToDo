@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="reg-block">
+        
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 style="color:white">Edit ToDo</h3></div>
+            <div class="panel-body">
+                <%= form_tag('/todo/edit') do %>
+                <div>
+                    <textarea cols="40" id="edititem" name="edititem" placeholder="" rows="10"><% parsed = JSON.parse(@return)%><%= parsed["description"].strip%>
+                    </textarea> 
+                    <input type="hidden" name="todoID" value="<%= parsed["id"]%>">
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-0">
+                        <%= submit_tag "Submit", :class => "button btn btn-info"%>
+                        <a href='/user/dashboard' class='btn btn-danger'>Cancel</a>
+                    </div>
+                </div>
+
+                <% end %>
+        </div>
+    </div>
+</div>
